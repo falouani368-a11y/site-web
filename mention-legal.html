@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales | Maddalon & SGPP</title>
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#111111">
+
+    <style>
+        :root {
+            --gold: #e8a61a;
+            --gold-light: #f5c542;
+            --gold-dark: #c98705;
+            --blue: #6ea4c7;
+            --blue-light: #8ec5e8;
+            --blue-dark: #4d6f86;
+            --gradient-main: linear-gradient(135deg, var(--blue-light) 0%, var(--gold-light) 100%);
+            --dark: #111111;
+            --dark-soft: #1b1b1b;
+            --gradient-dark: linear-gradient(135deg, #1e2935 0%, #2d3c4d 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f4f8fb;
+            color: #1a1a1a;
+            line-height: 1.7;
+            background-image:
+                radial-gradient(circle at top left, rgba(110,164,199,0.08), transparent 25%),
+                radial-gradient(circle at bottom right, rgba(232,166,26,0.08), transparent 25%);
+        }
+
+        /* NAVIGATION (Identique Index) */
+        nav {
+            background: rgba(30,41,53,0.96);
+            backdrop-filter: blur(14px);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(232,166,26,0.25);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+        }
+
+        .logo-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-nav img {
+            width: 85px;
+            height: 85px;
+            object-fit: contain;
+            background: white;
+            padding: 6px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+        }
+
+        .logo-text h1 {
+            font-size: 26px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            color: #eee;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            background: none;
+            border: none;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 3px;
+        }
+
+        /* CONTENU MENTIONS LEGALES */
+        .legal-section {
+            padding: 80px 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .legal-card {
+            background: white;
+            padding: 60px;
+            border-radius: 34px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+            border: 1px solid rgba(110,164,199,0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 50px;
+            font-weight: 800;
+            color: #111;
+        }
+
+        .legal-content h3 {
+            font-size: 22px;
+            color: var(--gold-dark);
+            margin: 40px 0 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .legal-content p {
+            margin-bottom: 20px;
+            color: #444;
+            font-size: 17px;
+        }
+
+        .legal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .legal-block {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 18px;
+            border-left: 5px solid var(--gold);
+        }
+
+        /* FLOATING BUTTONS */
+        .floating-contact { position:fixed; bottom:30px; right:30px; display:flex; flex-direction:column; gap:15px; z-index:1001; }
+        .float-btn { width:65px; height:65px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#111111; border:3px solid var(--gold); box-shadow:0 8px 25px rgba(0,0,0,0.4); transition:0.3s ease-in-out; text-decoration:none; }
+        .float-btn svg { width: 28px; height: 28px; fill: var(--gold); }
+        .float-btn:hover { transform:scale(1.1); background: var(--gold); }
+        .float-btn:hover svg { fill: #111111; }
+
+        footer {
+            background: var(--gradient-dark);
+            color: #cfcfcf;
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav { padding: 14px 20px; }
+            .nav-toggle { display: flex; }
+            nav ul { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background: rgba(30,41,53,0.98); padding: 20px; }
+            nav ul.open { display: flex; }
+            .logo-text h1 { font-size: 18px; }
+            .legal-section { padding: 40px 20px; }
+            .legal-card { padding: 30px 20px; border-radius: 20px; }
+            .section-title { font-size: 28px; }
+            .legal-grid { grid-template-columns: 1fr; gap: 20px; }
+            .floating-contact { bottom: 20px; right: 20px; }
+            .float-btn { width: 55px; height: 55px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo-nav">
+        <div class="logo-container">
+            <img src="SGPP.jpeg" alt="SGPP">
+            <img src="maddalon.jpeg" alt="Maddalon">
+        </div>
+        <div class="logo-text">
+            <h1>SGPP & Maddalon Peinture</h1>
+            <p>Peinture • Plâtrerie • Rénovation</p>
+        </div>
+    </div>
+    <button class="nav-toggle" id="navToggle">
+        <span></span><span></span><span></span>
+    </button>
+    <ul id="navMenu">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#presentation">Présentation</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#realisations">Réalisations</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<section class="legal-section">
+    <div class="legal-card">
+        <h2 class="section-title">Mentions Légales</h2>
+
+        <div class="legal-content">
+            <h3>Éditeurs du site</h3>
+            <div class="legal-grid">
+                <div class="legal-block">
+                    <p><strong>SGPP</strong><br>
+                    SIRET : 939 415 824 000 19<br>
+                    13 Route de Saint-Jean, 05000 Gap<br>
+                    06 48 55 32 30<br>
+                    contact@sgpp05.com</p>
+                </div>
+                <div class="legal-block">
+                    <p><strong>Maddalon Peinture</strong><br>
+                    SIRET : 829 357 870 000 23<br>
+                    13 Route de Saint-Jean, 05000 Gap<br>
+                    06 48 55 32 30<br>
+                    contact@maddalon-peinture.com</p>
+                </div>
+            </div>
+
+            <p><strong>Directeur de la publication :</strong> Benjamin Maddalon</p>
+
+            <h3>Hébergement</h3>
+            <p>Site hébergé par <strong>Netlify</strong>
+           
+
+            <h3>Propriété intellectuelle</h3>
+            <p>L'ensemble des contenus présents sur ce site (textes, photographies, logos, éléments graphiques et visuels) est protégé par les lois en vigueur relatives à la propriété intellectuelle. Toute reproduction, représentation, modification ou diffusion, totale ou partielle, sans autorisation préalable, est interdite.</p>
+
+            <h3>Responsabilité</h3>
+            <p>Les informations diffusées sur ce site sont fournies à titre indicatif. Malgré le soin apporté à leur rédaction, l'éditeur ne peut garantir l'absence totale d'erreurs ou d'omissions.</p>
+
+            <h3>Politique de confidentialité</h3>
+            <p>Ce site ne propose aucun espace membre et ne collecte pas directement de données personnelles via un formulaire.</p>
+            <p>Les visiteurs peuvent contacter l'entreprise par téléphone ou par courrier électronique. Les informations transmises dans ce cadre sont utilisées uniquement pour répondre aux demandes et ne sont ni soldées ni cédées à des tiers.</p>
+            <p>Conformément au RGPD, toute personne peut demander l'accès, la rectification ou la suppression des informations la concernant en contactant l'entreprise.</p>
+        </div>
+    </div>
+</section>
+
+<div class="floating-contact">
+    <a href="tel:0648553230" class="float-btn" title="Nous appeler">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    </a>
+</div>
+<!-- Boutons flottants de contact -->
+<div class="floating-contact">
+    <a href="tel:0648553230" class="float-btn" title="Nous appeler">
+        <svg viewBox="0 0 24 24">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+    </a>
+    <a href="mailto:contact@sgpp05.com" class="float-btn" title="Nous envoyer un mail">
+        <svg viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+    </a>
+</div>
+
+<footer>
+    <p>&copy; 2026 SGPP & Maddalon Peinture. Tous droits réservés.</p>
+</footer>
+
+<script>
+    // Script pour le menu mobile
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+    });
+</script>
+
+</body>
+</html>
