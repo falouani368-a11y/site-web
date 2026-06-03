@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CGV | SGPP & Maddalon Peinture – Gap (05)</title>
+<meta name="description" content="Conditions Générales de Vente de SGPP et Maddalon Peinture, entreprises de peinture et plâtrerie à Gap (05).">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/png" href="logo2.png">
+
+<style>
+:root {
+  --gold: #e8a61a;
+  --gold-light: #f5c542;
+  --gold-dark: #c98705;
+  --blue: #6ea4c7;
+  --blue-light: #8ec5e8;
+  --blue-dark: #4d6f86;
+  --gradient-main: linear-gradient(135deg, var(--blue-light) 0%, var(--gold-light) 100%);
+  --dark: #111111;
+  --dark-soft: #1b1b1b;
+  --gradient-dark: linear-gradient(135deg, #1e2935 0%, #2d3c4d 100%);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+html { scroll-behavior: smooth; }
+body {
+  background: #f4f8fb;
+  color: #1a1a1a;
+  line-height: 1.7;
+  background-image:
+    radial-gradient(circle at top left, rgba(110,164,199,0.08), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(232,166,26,0.08), transparent 25%);
+}
+
+/* NAV */
+nav {
+  background: rgba(30,41,53,0.96);
+  backdrop-filter: blur(14px);
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px solid rgba(232,166,26,0.25);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+}
+.logo-nav { display: flex; align-items: center; gap: 20px; }
+.logo-container { display: flex; align-items: center; gap: 10px; }
+.logo-nav img {
+  width: 85px; height: 85px; object-fit: contain;
+  background: white; padding: 6px; border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3); flex-shrink: 0;
+}
+.logo-text { display: flex; flex-direction: column; justify-content: center; }
+.logo-text h1 {
+  font-size: 26px;
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800; letter-spacing: 0.8px; line-height: 1.2;
+}
+.logo-text p { color: #eee; font-size: 15px; margin-top: 3px; font-weight: 500; letter-spacing: 0.5px; }
+nav ul { display: flex; list-style: none; gap: 30px; margin-left: auto; }
+nav ul li a { color: white; text-decoration: none; font-weight: 600; font-size: 16px; transition: 0.3s; }
+nav ul li a:hover { color: var(--gold); }
+.nav-toggle {
+  display: none; flex-direction: column; cursor: pointer;
+  gap: 6px; padding: 8px; background: none; border: none; z-index: 1100;
+}
+.nav-toggle span { display: block; width: 28px; height: 3px; background: var(--gold); border-radius: 3px; transition: 0.35s; }
+.nav-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+/* HERO BANNER */
+.page-hero {
+  background: var(--gradient-dark);
+  padding: 80px 60px 60px;
+  text-align: center;
+  border-bottom: 2px solid rgba(232,166,26,0.2);
+}
+.page-hero h2 {
+  font-size: 48px; font-weight: 800; color: white;
+  background: var(--gradient-main);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+}
+.page-hero p { color: #aaa; font-size: 17px; }
+.breadcrumb { margin-bottom: 20px; font-size: 14px; color: #888; }
+.breadcrumb a { color: var(--gold); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+
+/* SOMMAIRE */
+.sommaire {
+  background: white;
+  border: 1px solid rgba(110,164,199,0.15);
+  border-radius: 20px;
+  padding: 30px 35px;
+  margin-bottom: 50px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+.sommaire h3 {
+  font-size: 16px; font-weight: 800; color: #111;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 18px; padding-bottom: 12px;
+  border-bottom: 2px solid rgba(232,166,26,0.25);
+}
+.sommaire ol { padding-left: 20px; }
+.sommaire ol li { margin-bottom: 8px; }
+.sommaire ol li a { color: var(--blue-dark); text-decoration: none; font-weight: 600; font-size: 15px; transition: 0.2s; }
+.sommaire ol li a:hover { color: var(--gold); }
+
+/* CONTENU CGV */
+.cgv-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 60px;
+}
+.cgv-article {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 45px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(110,164,199,0.12);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+  position: relative;
+}
+.cgv-article::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: linear-gradient(90deg, var(--blue-light), var(--gold-light));
+  border-radius: 20px 20px 0 0;
+}
+.cgv-article h2 {
+  font-size: 22px; font-weight: 800; color: #111;
+  margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+}
+.art-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--gradient-dark);
+  color: var(--gold); font-size: 14px; font-weight: 800;
+  flex-shrink: 0;
+}
+.cgv-article p { color: #444; font-size: 16px; margin-bottom: 14px; line-height: 1.8; }
+.cgv-article p:last-child { margin-bottom: 0; }
+.cgv-article ul { list-style: none; padding: 0; margin: 14px 0; }
+.cgv-article ul li {
+  color: #444; font-size: 16px; padding: 8px 0 8px 28px;
+  position: relative; border-bottom: 1px solid #f0f0f0;
+}
+.cgv-article ul li:last-child { border-bottom: none; }
+.cgv-article ul li::before {
+  content: "✔";
+  position: absolute; left: 0;
+  color: var(--gold); font-weight: 700;
+}
+.cgv-article strong { color: #111; }
+.highlight-box {
+  background: linear-gradient(135deg, rgba(110,164,199,0.08), rgba(232,166,26,0.06));
+  border: 1px solid rgba(232,166,26,0.2);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin: 16px 0;
+}
+.highlight-box p { margin-bottom: 0; color: #333; }
+
+/* DATE MAJ */
+.update-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(232,166,26,0.1);
+  border: 1px solid rgba(232,166,26,0.3);
+  border-radius: 30px;
+  padding: 6px 16px;
+  font-size: 13px; font-weight: 600; color: var(--gold-dark);
+  margin-bottom: 40px;
+}
+
+/* FOOTER */
+footer {
+  background: var(--gradient-dark);
+  color: #cfcfcf;
+  padding: 40px;
+  text-align: center;
+}
+footer p { margin-bottom: 8px; font-size: 14px; }
+footer a { color: var(--gold); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* FLOATING */
+.floating-contact { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 1001; }
+.float-btn {
+  width: 65px; height: 65px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: #111111; border: 3px solid var(--gold);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  transition: 0.3s ease-in-out; text-decoration: none;
+}
+.float-btn svg { width: 28px; height: 28px; fill: var(--gold); }
+.float-btn:hover { transform: scale(1.1); background: var(--gold); }
+.float-btn:hover svg { fill: #111111; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { flex-wrap: wrap; padding: 14px 20px; }
+  .nav-toggle { display: flex; }
+  .logo-nav { flex: 1; }
+  .logo-nav img { width: 65px; height: 65px; }
+  .logo-text h1 { font-size: 20px; }
+  .logo-text p { font-size: 13px; }
+  nav ul { display: none; flex-direction: column; width: 100%; gap: 0; padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 14px; }
+  nav ul.open { display: flex; }
+  nav ul li a { display: block; padding: 12px 10px; font-size: 16px; text-align: center; border-radius: 8px; }
+  nav ul li a:hover { background: rgba(232,166,26,0.1); color: var(--gold); }
+  .page-hero { padding: 50px 20px 40px; }
+  .page-hero h2 { font-size: 30px; }
+  .cgv-wrapper { padding: 40px 16px; }
+  .cgv-article { padding: 28px 20px; }
+  .cgv-article h2 { font-size: 18px; }
+  .sommaire { padding: 22px 18px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo-nav">
+    <div class="logo-container">
+      <img src="SGPP.jpeg" alt="SGPP">
+      <img src="maddalon.jpeg" alt="Maddalon">
+    </div>
+    <div class="logo-text">
+      <h1>SGPP & Maddalon Peinture</h1>
+      <p>Peinture • Plâtrerie • Rénovation</p>
+    </div>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="navMenu">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="index.html#presentation">Présentation</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#realisations">Réalisations</a></li>
+    <li><a href="index.html#a-propos">À propos</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="index.html">Accueil</a> &rsaquo; Conditions Générales de Vente
+  </div>
+  <h2>Conditions Générales de Vente</h2>
+  <p>SGPP &amp; Maddalon Peinture — Gap (05) — En vigueur au 1er janvier 2026</p>
+</div>
+
+<!-- CONTENU -->
+<div class="cgv-wrapper">
+
+  <div style="text-align:center;">
+    <span class="update-badge">📅 Dernière mise à jour : janvier 2026</span>
+  </div>
+
+  <!-- SOMMAIRE -->
+  <div class="sommaire">
+    <h3>Sommaire</h3>
+    <ol>
+      <li><a href="#art1">Objet et champ d'application</a></li>
+      <li><a href="#art2">Devis et formation du contrat</a></li>
+      <li><a href="#art3">Prix et modalités de paiement</a></li>
+      <li><a href="#art4">Acompte</a></li>
+      <li><a href="#art5">Délais d'exécution</a></li>
+      <li><a href="#art6">Obligations du client</a></li>
+      <li><a href="#art7">Réception des travaux</a></li>
+      <li><a href="#art8">Garanties légales</a></li>
+      <li><a href="#art9">Assurances</a></li>
+      <li><a href="#art10">Sous-traitance</a></li>
+      <li><a href="#art11">Résiliation</a></li>
+      <li><a href="#art12">Responsabilité</a></li>
+      <li><a href="#art13">Litiges</a></li>
+    </ol>
+  </div>
+
+  <!-- ARTICLE 1 -->
+  <div class="cgv-article" id="art1">
+    <h2><span class="art-num">1</span> Objet et champ d'application</h2>
+    <p>Les présentes Conditions Générales de Vente (CGV) s'appliquent à l'ensemble des prestations de travaux réalisées par <strong>SGPP</strong> (SIRET 939 415 824 000 19) et <strong>Maddalon Peinture</strong> (SIRET 829 357 870 000 23), ci-après dénommées « l'Entreprise », auprès de tout client particulier ou professionnel.</p>
+    <p>Elles régissent les travaux de peinture intérieure et extérieure, plâtrerie, pose de plaques de plâtre BA13, création de cloisons, faux plafonds, isolation thermique et acoustique, ainsi que tout travail de rénovation intérieure.</p>
+    <p>Toute commande implique l'acceptation pleine et entière des présentes CGV. Des conditions particulières peuvent être convenues par écrit et prévaudront sur les présentes en cas de contradiction.</p>
+  </div>
+
+  <!-- ARTICLE 2 -->
+  <div class="cgv-article" id="art2">
+    <h2><span class="art-num">2</span> Devis et formation du contrat</h2>
+    <p>Tout devis établi par l'Entreprise est <strong>gratuit</strong> et reste valable <strong>3 mois</strong> à compter de sa date d'émission, sauf mention contraire expressément indiquée.</p>
+    <p>Le contrat est formé à la date de réception par l'Entreprise du devis signé par le client, accompagné de la mention manuscrite « Bon pour accord » et, le cas échéant, de l'acompte prévu.</p>
+    <div class="highlight-box">
+      <p>⚠️ Tout devis signé vaut engagement ferme. Toute modification du périmètre des travaux après signature fera l'objet d'un avenant écrit et signé des deux parties.</p>
+    </div>
+    <p>Les prix figurant sur le devis sont établis sur la base des informations transmises par le client. Toute modification des conditions initiales (surface, nature du support, accès, découverte de travaux cachés) pourra entraîner une révision du prix.</p>
+  </div>
+
+  <!-- ARTICLE 3 -->
+  <div class="cgv-article" id="art3">
+    <h2><span class="art-num">3</span> Prix et modalités de paiement</h2>
+    <p>Les prix sont exprimés en euros, <strong>hors taxes (HT)</strong> ou <strong>toutes taxes comprises (TTC)</strong> selon les mentions portées sur le devis, et conformément à la législation fiscale en vigueur.</p>
+    <p>Les modalités de paiement sont les suivantes :</p>
+    <ul>
+      <li>Acompte à la signature du devis (voir article 4)</li>
+      <li>Solde à la réception des travaux ou selon échéancier convenu</li>
+      <li>Paiement par virement bancaire, chèque ou espèces dans les limites légales</li>
+    </ul>
+    <p>Tout retard de paiement entraîne de plein droit l'application de pénalités égales à <strong>3 fois le taux d'intérêt légal</strong> en vigueur, ainsi qu'une indemnité forfaitaire de recouvrement de <strong>40 €</strong> (art. L.441-10 du Code de commerce). Pour les clients professionnels, les intérêts courent dès le lendemain de la date d'échéance sans mise en demeure préalable.</p>
+  </div>
+
+  <!-- ARTICLE 4 -->
+  <div class="cgv-article" id="art4">
+    <h2><span class="art-num">4</span> Acompte</h2>
+    <p>Un acompte est demandé à la signature du devis selon les modalités suivantes :</p>
+    <ul>
+      <li>Chantiers d'un montant inférieur à 5 000 € TTC : <strong>30 % du montant total</strong></li>
+      <li>Chantiers d'un montant compris entre 5 000 € et 20 000 € TTC : <strong>40 % du montant total</strong></li>
+      <li>Chantiers d'un montant supérieur à 20 000 € TTC : <strong>selon échéancier défini au devis</strong></li>
+    </ul>
+    <p>L'acompte versé n'est pas remboursable en cas d'annulation par le client sauf accord express de l'Entreprise, sous réserve des dispositions légales applicables aux contrats conclus hors établissement avec les particuliers.</p>
+  </div>
+
+  <!-- ARTICLE 5 -->
+  <div class="cgv-article" id="art5">
+    <h2><span class="art-num">5</span> Délais d'exécution</h2>
+    <p>Les délais d'exécution sont indiqués à titre prévisionnel sur le devis. Ils courent à compter de la <strong>réception de l'acompte</strong> et de la <strong>mise à disposition du chantier</strong> dans les conditions prévues à l'article 6.</p>
+    <p>L'Entreprise ne peut être tenue responsable des retards causés par :</p>
+    <ul>
+      <li>Des conditions météorologiques rendant l'exécution impossible ou dangereuse</li>
+      <li>Des modifications demandées par le client en cours de chantier</li>
+      <li>Des difficultés d'approvisionnement en matériaux indépendantes de la volonté de l'Entreprise</li>
+      <li>Des malfaçons ou désordres préexistants découverts en cours de travaux</li>
+      <li>Tout cas de force majeure au sens de l'article 1218 du Code civil</li>
+    </ul>
+  </div>
+
+  <!-- ARTICLE 6 -->
+  <div class="cgv-article" id="art6">
+    <h2><span class="art-num">6</span> Obligations du client</h2>
+    <p>Le client s'engage à :</p>
+    <ul>
+      <li>Mettre à disposition un chantier accessible, propre et dégagé de tout meuble ou obstacle</li>
+      <li>Fournir l'alimentation en eau et en électricité nécessaire à l'exécution des travaux</li>
+      <li>Permettre l'accès au chantier aux horaires convenus</li>
+      <li>Signaler tout désordre préexistant ou contrainte particulière avant le démarrage</li>
+      <li>Régler les sommes dues dans les délais convenus</li>
+    </ul>
+    <p>En cas de manquement à ces obligations entraînant un retard ou un surcoût pour l'Entreprise, une facturation complémentaire pourra être appliquée.</p>
+  </div>
+
+  <!-- ARTICLE 7 -->
+  <div class="cgv-article" id="art7">
+    <h2><span class="art-num">7</span> Réception des travaux</h2>
+    <p>À l'achèvement des travaux, une <strong>réception contradictoire</strong> est réalisée en présence du client et du représentant de l'Entreprise. Un procès-verbal de réception est établi et signé par les deux parties.</p>
+    <p>Le client dispose d'un délai de <strong>8 jours</strong> à compter de la réception pour signaler par écrit tout défaut apparent ou réserve non relevé lors de la réception. Passé ce délai, les travaux sont réputés acceptés sans réserve.</p>
+    <div class="highlight-box">
+      <p>La réception des travaux marque le point de départ des garanties légales (voir article 8) et déclenche le paiement du solde restant dû.</p>
+    </div>
+  </div>
+
+  <!-- ARTICLE 8 -->
+  <div class="cgv-article" id="art8">
+    <h2><span class="art-num">8</span> Garanties légales</h2>
+    <p>L'Entreprise est soumise aux garanties légales suivantes :</p>
+    <ul>
+      <li><strong>Garantie de parfait achèvement (1 an)</strong> — couvre tous les désordres signalés lors de la réception ou dans l'année suivant celle-ci.</li>
+      <li><strong>Garantie biennale (2 ans)</strong> — couvre les éléments d'équipement dissociables de l'ouvrage (ex. faux plafonds démontables).</li>
+      <li><strong>Garantie décennale (10 ans)</strong> — couvre les dommages compromettant la solidité de l'ouvrage ou le rendant impropre à sa destination (applicable aux travaux concernés).</li>
+    </ul>
+    <p>Ces garanties ne couvrent pas les dommages résultant d'un usage anormal, d'un défaut d'entretien, d'une modification réalisée par le client ou un tiers, ni les dommages causés par des événements extérieurs (humidité excessive, infiltrations préexistantes, etc.).</p>
+  </div>
+
+  <!-- ARTICLE 9 -->
+  <div class="cgv-article" id="art9">
+    <h2><span class="art-num">9</span> Assurances</h2>
+    <p>L'Entreprise est couverte par une assurance <strong>Responsabilité Civile Professionnelle</strong> et une assurance <strong>Décennale</strong> pour les travaux y donnant droit, souscrites auprès d'un assureur habilité à exercer en France.</p>
+    <p>Les attestations d'assurance peuvent être communiquées au client sur simple demande.</p>
+    <p>Il est conseillé au client de vérifier que son propre contrat d'assurance habitation ou multirisque couvre les dommages pouvant survenir en cours de chantier.</p>
+  </div>
+
+  <!-- ARTICLE 10 -->
+  <div class="cgv-article" id="art10">
+    <h2><span class="art-num">10</span> Sous-traitance</h2>
+    <p>L'Entreprise se réserve le droit de recourir à des sous-traitants pour l'exécution de tout ou partie des travaux, dans le respect des dispositions de la loi n°75-1334 du 31 décembre 1975 relative à la sous-traitance.</p>
+    <p>Le recours à la sous-traitance ne dégage pas l'Entreprise de sa responsabilité vis-à-vis du client. L'Entreprise demeure seule interlocutrice du client pour l'ensemble du chantier.</p>
+  </div>
+
+  <!-- ARTICLE 11 -->
+  <div class="cgv-article" id="art11">
+    <h2><span class="art-num">11</span> Résiliation</h2>
+    <p>En cas de résiliation du contrat par le client après signature du devis et avant démarrage des travaux, l'acompte versé reste acquis à l'Entreprise à titre d'indemnité forfaitaire.</p>
+    <p>En cas de résiliation en cours de chantier par le client, les travaux réalisés sont facturés au prorata de l'avancement, majorés d'une indemnité de <strong>15 %</strong> du montant restant à exécuter pour couvrir les frais de remobilisation et pertes d'exploitation.</p>
+    <p>L'Entreprise peut résilier le contrat en cas de non-paiement de l'acompte ou d'un appel de fonds, après mise en demeure restée sans effet pendant <strong>15 jours</strong>.</p>
+  </div>
+
+  <!-- ARTICLE 12 -->
+  <div class="cgv-article" id="art12">
+    <h2><span class="art-num">12</span> Responsabilité</h2>
+    <p>La responsabilité de l'Entreprise ne saurait être engagée pour des dommages indirects ou immatériels résultant de l'exécution ou de l'inexécution des travaux, tels que perte d'exploitation, préjudice commercial ou financier.</p>
+    <p>En cas de dommage avéré imputable à l'Entreprise, sa responsabilité est limitée au montant HT des travaux concernés, sauf dommages corporels ou faute lourde.</p>
+    <p>L'Entreprise ne peut être tenue responsable des vices cachés ou désordres préexistants non signalés par le client avant le démarrage des travaux.</p>
+  </div>
+
+  <!-- ARTICLE 13 -->
+  <div class="cgv-article" id="art13">
+    <h2><span class="art-num">13</span> Litiges</h2>
+    <p>En cas de différend, les parties s'engagent à rechercher en priorité une solution amiable. Le client peut recourir à un médiateur de la consommation conformément aux articles L.611-1 et suivants du Code de la consommation.</p>
+    <div class="highlight-box">
+      <p>Médiateur compétent : <strong>Médiateur de la Fédération Française du Bâtiment (FFB)</strong> ou tout autre médiateur agréé — <a href="https://www.economie.gouv.fr/mediation-conso" target="_blank" style="color:var(--gold-dark);">www.economie.gouv.fr/mediation-conso</a></p>
+    </div>
+    <p>À défaut de résolution amiable, tout litige relatif à l'interprétation ou à l'exécution des présentes sera soumis aux tribunaux compétents du ressort du siège social de l'Entreprise, soit le <strong>Tribunal Judiciaire de Gap (05)</strong>, sauf disposition légale impérative contraire.</p>
+    <p>Les présentes CGV sont soumises au <strong>droit français</strong>.</p>
+  </div>
+
+</div><!-- /cgv-wrapper -->
+
+<!-- FLOATING BUTTONS -->
+<div class="floating-contact">
+  <a href="tel:0648553230" class="float-btn" title="Nous appeler">
+    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+  </a>
+  <a href="mailto:contact@sgpp05.com" class="float-btn" title="Nous envoyer un mail">
+    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+  </a>
+</div>
+
+<footer>
+  <p>Intervention : Gap • Briançon • Embrun • Sisteron • Manosque • Digne-les-Bains</p>
+  <p>N° Siret SGPP : 939 415 824 000 19 &nbsp;|&nbsp; <strong>QUALIBAT N° 4132</strong></p>
+  <p>N° Siret Maddalon Peinture : 829 357 870 000 23</p>
+  <p>
+    <a href="mentions-legales.html">Mentions légales</a> ·
+    <a href="cgv.html">CGV</a> ·
+    <a href="index.html#contact">Contact</a>
+  </p>
+  <p>© 2026 SGPP & Maddalon Peinture — Tous droits réservés</p>
+</footer>
+
+<script>
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+if (navToggle && navMenu) {
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('#navMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('active');
+      navMenu.classList.remove('open');
+    });
+  });
+}
+</script>
+</body>
+</html>
