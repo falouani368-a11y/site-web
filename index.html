@@ -293,82 +293,138 @@ font-size:18px;
 color:#444;
 text-align:left;
 }
-
 /* AVANTAGES */
-.avantages{
-background:var(--gradient-dark);
+.avantages {
+  background: var(--gradient-dark);
 }
-.avantages .section-title{
-color:white;
+.avantages .section-title {
+  color: white;
 }
-.avantages-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
+.avantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
 }
-.avantage-card{
-background:rgba(255,255,255,0.03);
-padding:35px;
-border-radius:24px;
-text-align:center;
-border:1px solid rgba(255,255,255,0.06);
+.avantage-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 40px 30px;
+  border-radius: 24px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-decoration: none; /* Transforme la carte en bloc cliquable propre */
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
 }
-.avantage-card h3{
-margin-bottom:15px;
-color: var(--gold);
+.avantage-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(232, 166, 26, 0.4);
+  box-shadow: 0 15px 35px rgba(232, 166, 26, 0.1);
 }
-.avantage-card p{
-color:#ddd;
+.avantage-card h3 {
+  margin-bottom: 15px;
+  color: var(--gold);
+  font-size: 22px;
+  font-weight: 700;
+}
+.avantage-card p {
+  color: #ddd;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.avantage-link {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--blue-light);
+  transition: color 0.3s, padding-left 0.3s;
+}
+.avantage-card:hover .avantage-link {
+  color: var(--gold);
+  padding-left: 5px;
 }
 
+```css
 /* SERVICES */
-.services{
-background:#f8f8f8;
+.services {
+  background: #f8f8f8;
 }
-.service-block{
-margin-bottom:90px;
+.service-block {
+  margin-bottom: 90px;
 }
-.service-title{
-text-align:center;
-font-size:38px;
-margin-bottom:40px;
-color:#111;
-font-weight:800;
+.service-title {
+  text-align: center;
+  font-size: 38px;
+  margin-bottom: 40px;
+  color: #111;
+  font-weight: 800;
 }
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
 }
-.card{
-background:white;
-padding:35px;
-border-radius:24px;
-box-shadow:0 10px 35px rgba(0,0,0,0.06);
-border:1px solid rgba(110,164,199,0.12);
-position:relative;
+.card {
+  background: white;
+  padding: 35px;
+  border-radius: 24px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+  border: 1px solid rgba(110,164,199,0.12);
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
 }
-.card::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:4px;
-background:var(--gold);
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 24px 24px 0 0;
 }
-.card h3{
-margin-bottom:20px;
-font-weight:800;
-color: var(--gold);
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(232,166,26,0.18);
+  border-color: rgba(232,166,26,0.4);
 }
-.card ul{
-list-style:none;
+.card h3 {
+  margin-bottom: 20px;
+  font-weight: 800;
+  color: var(--gold);
+  transition: color 0.3s;
 }
-.card ul li{
-margin-bottom:10px;
-color:#444;
-text-align:left;
+.card:hover h3 {
+  color: var(--gold-dark);
+}
+.card ul {
+  list-style: none;
+}
+.card ul li {
+  margin-bottom: 10px;
+  color: #444;
+  text-align: left;
+}
+.card-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--blue-dark);
+  transition: gap 0.3s, color 0.3s;
+}
+.card:hover .card-arrow {
+  color: var(--gold);
+  gap: 10px;
 }
 
 /* GALERIE */
@@ -547,6 +603,14 @@ line-height: 1.8;
 .float-btn:hover { transform:scale(1.1); background: var(--gold); }
 .float-btn:hover svg { fill: #111111; }
 footer { background:var(--gradient-dark); color:#cfcfcf; padding:40px; text-align:center; }
+footer a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+footer a:hover {
+  color: var(--gold);
+}
 
 /* RESPONSIVE — TABLETTE (max 1024px) */
 @media (max-width: 1024px) {
@@ -695,62 +759,99 @@ footer p { font-size: 13px; margin-bottom: 6px; }
 <section class="avantages">
   <h2 class="section-title">Pourquoi nous choisir ?</h2>
   <div class="avantages-grid">
-    <div class="avantage-card"><h3>✔ Devis gratuit</h3><p>Étude personnalisée de votre projet.</p></div>
-    <div class="avantage-card"><h3>✔ Certification QUALIBAT 4132</h3><p>SGPP détient la qualification officielle (Technicité confirmée en plaques de plâtre).</p></div>
-    <div class="avantage-card"><h3>✔ Intervention rapide</h3><p>Déplacements dans tout le 04 et le 05.</p></div>
-    <div class="avantage-card"><h3>✔ Particuliers & Pros</h3><p>Maisons, bureaux, commerces et collectivités.</p></div>
+    
+    <a href="avantage-devis-gratuit.html" class="avantage-card">
+      <h3>✔ Devis gratuit</h3>
+      <p>Étude personnalisée et chiffrage précis de votre projet sous 48h.</p>
+      <span class="avantage-link">En savoir plus →</span>
+    </a>
+
+    <a href="avantage-qualibat.html" class="avantage-card">
+      <h3>✔ Qualification QUALIBAT</h3>
+      <p>SGPP détient la certification officielle 4132 (Technicité confirmée).</p>
+      <span class="avantage-link">En savoir plus →</span>
+    </a>
+
+    <a href="avantage-intervention-rapide.html" class="avantage-card">
+      <h3>✔ Intervention rapide</h3>
+      <p>Déplacements et suivi de chantiers réactifs dans tout le 04 et le 05.</p>
+      <span class="avantage-link">En savoir plus →</span>
+    </a>
+
+    <a href="avantage-particuliers-pros.html" class="avantage-card">
+      <h3>✔ Particuliers & Pros</h3>
+      <p>Une expertise adaptée aux maisons, bureaux, commerces et collectivités.</p>
+      <span class="avantage-link">En savoir plus →</span>
+    </a>
+
   </div>
 </section>
 
-<section class="services" id="services">
-<h2 class="section-title">Nos Services</h2>
-<div class="service-block" id="maddalon-services">
-<h3 class="service-title">Maddalon Peinture</h3>
-<div class="cards">
-<div class="card">
-<h3>Peinture intérieure</h3>
-<ul>
-<li>✔ Murs & plafonds</li>
-<li>✔ Papier peint</li>
-<li>✔ Enduits décoratifs</li>
-<li>✔ Conseils couleurs</li>
-</ul>
-</div>
-<div class="card">
-<h3>Peinture extérieure</h3>
-<ul>
-<li>✔ Façades</li>
-<li>✔ Boiseries</li>
-<li>✔ Traitement fissures</li>
-<li>✔ Remise en état</li>
-</ul>
-</div>
-</div>
-</div>
 
-<div class="service-block" id="sgpp-services">
-<h3 class="service-title">SGPP - Placo & Plâtrerie</h3>
-<div class="cards">
-<div class="card">
-<h3>Placo BA13</h3>
-<ul>
-<li>✔ Pose de plaques BA13</li>
-<li>✔ Ossatures métalliques</li>
-<li>✔ Jointoiement</li>
-<li>✔ Finitions</li>
-</ul>
-</div>
-<div class="card">
-<h3>Cloisons & Isolation</h3>
-<ul>
-<li>✔ Cloisons sèches</li>
-<li>✔ Isolation thermique</li>
-<li>✔ Isolation acoustique</li>
-<li>✔ Faux plafonds</li>
-</ul>
-</div>
-</div>
-</div>
+<section class="services" id="services">
+  <h2 class="section-title">Nos Services</h2>
+
+  <!-- MADDALON PEINTURE -->
+  <div class="service-block" id="maddalon-services">
+    <h3 class="service-title">Maddalon Peinture</h3>
+    <div class="cards">
+
+      <a href="service-peinture-interieure.html" class="card">
+        <h3>🖌️ Peinture intérieure</h3>
+        <ul>
+          <li>✔ Murs & plafonds</li>
+          <li>✔ Papier peint</li>
+          <li>✔ Enduits décoratifs</li>
+          <li>✔ Anti-humidité & moisissures</li>
+          <li>✔ Conseils couleurs</li>
+        </ul>
+        <span class="card-arrow">Voir le détail →</span>
+      </a>
+
+      <a href="service-peinture-exterieure.html" class="card">
+        <h3>🏗️ Peinture extérieure</h3>
+        <ul>
+          <li>✔ Ravalement de façade</li>
+          <li>✔ Boiseries & menuiseries</li>
+          <li>✔ Traitement fissures</li>
+          <li>✔ Remise en état</li>
+        </ul>
+        <span class="card-arrow">Voir le détail →</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- SGPP -->
+  <div class="service-block" id="sgpp-services">
+    <h3 class="service-title">SGPP - Placo & Plâtrerie</h3>
+    <div class="cards">
+
+      <a href="service-placo.html" class="card">
+        <h3>🧱 Placo BA13 & Plâtrerie</h3>
+        <ul>
+          <li>✔ Pose de plaques BA13</li>
+          <li>✔ Ossatures métalliques</li>
+          <li>✔ Jointoiement & finitions</li>
+          <li>✔ Habillage de gaines</li>
+        </ul>
+        <span class="card-arrow">Voir le détail →</span>
+      </a>
+
+      <a href="service-isolation.html" class="card">
+        <h3>🌡️ Isolation & Aménagement</h3>
+        <ul>
+          <li>✔ Doublage thermique (ITI)</li>
+          <li>✔ Isolation acoustique</li>
+          <li>✔ Faux plafonds</li>
+          <li>✔ Rénovation après sinistre</li>
+        </ul>
+        <span class="card-arrow">Voir le détail →</span>
+      </a>
+
+    </div>
+  </div>
+
 </section>
 
 <section class="realisations" id="realisations">
@@ -787,7 +888,7 @@ footer p { font-size: 13px; margin-bottom: 6px; }
       <div class="gallery-caption">Patio 8</div>
     </div>
     <div class="gallery-item">
-      <img src=".png" data-full="palais-sports-orcieres.png" alt="Palais des sports d'Orcieres">
+      <img src="palais-sports-orcieres.png" data-full="palais-sports-orcieres.png" alt="Palais des sports d'Orcieres">
       <div class="gallery-caption">Palais des sports d'Orcieres</div>
     </div>
     <div class="gallery-item">
@@ -983,7 +1084,8 @@ footer p { font-size: 13px; margin-bottom: 6px; }
 <p>Intervention : Gap • Briançon • Embrun • Sisteron • Manosque • Digne-les-Bains</p>
 <p>N° Siret SGPP : 939 415 824 000 19</p><strong>QUALIBAT N° 4132 (Technicité confirmée)</strong>
 <p>N° Siret Maddalon peinture : 829 357 870 000 23</p>
-      <a href="mention-legal.html">Mentions légales et Politique de confidentialité</a>
+      <a href="mention-legal.html">Mentions légales et Politique de confidentialité</a><br>
+	    <a href="Cvg.html">Conditions Générales de Vente</a>
 
 <p>© 2026 SGPP & Maddalon Peinture - Tous droits réservés</p>
 </footer>
