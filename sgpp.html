@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SGPP – Dossier de Référence</title>
+<link rel="icon" type="image/png" href="logo2.png">
+<style>
+:root{
+--gold:#e8a61a;
+--gold-light:#f5c542;
+--gold-dark:#c98705;
+--blue:#6ea4c7;
+--blue-light:#8ec5e8;
+--blue-dark:#4d6f86;
+--gradient-main: linear-gradient(135deg, var(--blue-light) 0%, var(--gold-light) 100%);
+--dark:#111111;
+--dark-soft:#1b1b1b;
+--gradient-dark:linear-gradient(135deg,#1e2935 0%,#2d3c4d 100%);
+--shadow-gold:0 10px 30px rgba(232,166,26,0.18);
+}
+*{ margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+html{ scroll-behavior:smooth; }
+body{ background:#f4f8fb; color:#1a1a1a; line-height:1.7;
+  background-image: radial-gradient(circle at top left,rgba(110,164,199,0.08),transparent 25%),
+  radial-gradient(circle at bottom right,rgba(232,166,26,0.08),transparent 25%);
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav{
+background:rgba(30,41,53,0.96);
+backdrop-filter:blur(14px);
+padding:20px 50px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+border-bottom:2px solid rgba(232,166,26,0.25);
+box-shadow:0 12px 40px rgba(0,0,0,0.25);
+}
+.logo-nav{ display:flex; align-items:center; gap:20px; }
+.logo-container{ display:flex; align-items:center; gap:10px; }
+.logo-nav img{ width:85px; height:85px; object-fit:contain; background:white; padding:6px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.3); flex-shrink:0; }
+.logo-text{ display:flex; flex-direction:column; justify-content:center; }
+.logo-text h1{ font-size:26px; background:var(--gradient-main); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:800; letter-spacing:0.8px; line-height:1.2; }
+.logo-text p{ color:#eee; font-size:15px; margin-top:3px; font-weight:500; letter-spacing:0.5px; }
+nav ul{ display:flex; list-style:none; gap:30px; margin-left:auto; }
+nav ul li a{ color:white; text-decoration:none; font-weight:600; font-size:16px; transition:0.3s; }
+nav ul li a:hover{ color:var(--gold); }
+.nav-toggle{ display:none; flex-direction:column; cursor:pointer; gap:6px; padding:8px; background:none; border:none; z-index:1100; }
+.nav-toggle span{ display:block; width:28px; height:3px; background:var(--gold); border-radius:3px; transition:0.35s; }
+.nav-toggle.active span:nth-child(1){ transform:translateY(9px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2){ opacity:0; }
+.nav-toggle.active span:nth-child(3){ transform:translateY(-9px) rotate(-45deg); }
+
+/* PAGE HEADER */
+.page-hero{
+  background: var(--gradient-dark);
+  padding: 70px 60px 60px;
+  text-align: center;
+  border-bottom: 2px solid rgba(110,164,199,0.25);
+}
+.page-hero .badge{
+  display: inline-block;
+  background: rgba(110,164,199,0.15);
+  border: 1px solid rgba(110,164,199,0.4);
+  color: var(--blue-light);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 30px;
+  margin-bottom: 20px;
+}
+.page-hero h2{
+  font-size: 42px;
+  font-weight: 800;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.page-hero .qualibat{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232,166,26,0.12);
+  border: 1px solid rgba(232,166,26,0.35);
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 20px;
+  border-radius: 30px;
+  margin-top: 14px;
+}
+.page-hero .meta{
+  font-size: 14px;
+  color: #aaa;
+  letter-spacing: 0.05em;
+  margin-top: 8px;
+}
+
+/* MAIN CONTENT */
+.doc-wrapper{
+  max-width: 960px;
+  margin: 60px auto;
+  padding: 0 30px 60px;
+}
+.doc-section{
+  background: white;
+  border-radius: 24px;
+  padding: 45px 50px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+  border: 1px solid rgba(110,164,199,0.12);
+}
+.doc-section h2{
+  font-size: 22px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid var(--blue);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.doc-section h2 .icon{
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.doc-section p{ color: #555; font-size: 16px; margin-bottom: 16px; }
+.doc-section ul{ padding-left: 0; list-style: none; }
+.doc-section ul li{
+  padding: 10px 14px 10px 42px;
+  margin-bottom: 8px;
+  color: #444;
+  font-size: 15px;
+  border-radius: 10px;
+  background: #f9fbfd;
+  border-left: 3px solid var(--gold);
+  position: relative;
+}
+.doc-section ul li::before{
+  content: "✔";
+  color: var(--blue);
+  font-weight: 700;
+  position: absolute;
+  left: 14px;
+}
+.doc-section ul li strong{ color: #111; }
+
+/* TABLE */
+.ref-table{ width:100%; border-collapse:collapse; margin-top:10px; font-size:14px; }
+.ref-table thead th{
+  background: var(--gradient-dark);
+  color: white;
+  padding: 13px 16px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+.ref-table thead th:first-child{ border-radius: 12px 0 0 0; }
+.ref-table thead th:last-child{ border-radius: 0 12px 0 0; }
+.ref-table tbody td{ padding: 11px 16px; border-bottom: 1px solid #eef0f4; color: #444; vertical-align: top; }
+.ref-table tbody tr:last-child td:first-child{ border-radius: 0 0 0 12px; }
+.ref-table tbody tr:last-child td:last-child{ border-radius: 0 0 12px 0; }
+.ref-table tbody tr:nth-child(even) td{ background: #f9fbfd; }
+.ref-table tbody tr:hover td{ background: rgba(110,164,199,0.07); }
+.ref-table tbody td:first-child{ font-weight: 600; color: #1a1a1a; }
+
+/* BACK BUTTON */
+.back-bar{
+  max-width: 960px;
+  margin: 30px auto 0;
+  padding: 0 30px;
+}
+.btn-back{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #111;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.btn-back:hover{ background: var(--gold); color: #111; transform: translateX(-4px); }
+
+/* FOOTER */
+footer{ background:var(--gradient-dark); color:#cfcfcf; padding:40px; text-align:center; margin-top: 60px; }
+footer a{ color:white; text-decoration:none; transition:0.3s; }
+footer a:hover{ color:var(--gold); }
+footer p{ margin-bottom: 6px; font-size: 14px; }
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{ flex-wrap:wrap; padding:12px 16px; }
+  .nav-toggle{ display:flex; }
+  .logo-nav img{ width:50px; height:50px; }
+  .logo-text h1{ font-size:16px; }
+  .logo-text p{ font-size:12px; }
+  nav ul{ display:none; flex-direction:column; width:100%; gap:0; padding:8px 0; border-top:1px solid rgba(255,255,255,0.1); margin-top:12px; }
+  nav ul.open{ display:flex; }
+  nav ul li a{ display:block; padding:11px 10px; font-size:15px; border-radius:8px; text-align:center; }
+  .page-hero{ padding:50px 20px 40px; }
+  .page-hero h2{ font-size:26px; }
+  .doc-wrapper{ padding:0 14px 40px; margin-top:30px; }
+  .doc-section{ padding:25px 18px; border-radius:16px; }
+  .doc-section h2{ font-size:18px; }
+  .back-bar{ padding:0 14px; }
+  footer{ padding:24px 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo-nav">
+    <div class="logo-container">
+      <img src="SGPP.jpeg" alt="SGPP">
+      <img src="maddalon.jpeg" alt="Maddalon">
+    </div>
+    <div class="logo-text">
+      <h1>SGPP & MADDALON Peinture</h1>
+      <p>Peinture • Plâtrerie • Rénovation</p>
+    </div>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="navMenu">
+    <li><a href="index.html#top">Accueil</a></li>
+    <li><a href="index.html#presentation">Présentation</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#realisations">Réalisations</a></li>
+    <li><a href="index.html#a-propos">À propos</a></li>
+    <li><a href="index.html#localisation">Localisation</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="badge">Dossier de référence</div>
+  <h2>SGPP – Placo Plâtrerie</h2>
+  <p class="meta">SIRET : 939 415 824 00019 &nbsp;|&nbsp; Code APE : 4331Z</p>
+  <div class="qualibat">⭐ QUALIBAT N° 4132 – Technicité confirmée</div>
+</div>
+
+<div class="back-bar">
+  <a href="index.html#realisations" class="btn-back">← Retour au site</a>
+</div>
+
+<div class="doc-wrapper">
+
+  <div class="doc-section">
+    <h2><span class="icon">👥</span> Moyens Humains</h2>
+    <p>L'entreprise s'appuie sur une structure expérimentée capitalisant plus de 37 ans d'expérience cumulée (continuité de SG2PP) :</p>
+    <ul>
+      <li><strong>Effectif global :</strong> Entre 14 et 20 salariés selon l'activité (1 dirigeant, 11 compagnons et 3 apprentis, complété par des intérimaires réguliers en période de forte activité).</li>
+      <li><strong>Encadrement et Études :</strong> 2 techniciens spécialisés dans les études, le suivi technique et le contrôle qualité.</li>
+      <li><strong>Suivi Opérationnel :</strong> 3 chefs de chantier assurant l'encadrement quotidien sur le terrain.</li>
+      <li><strong>Administration :</strong> 2 assistantes administratives et comptables bénéficiant de plus de 25 ans d'expérience.</li>
+    </ul>
+  </div>
+
+  <div class="doc-section">
+    <h2><span class="icon">🔧</span> Moyens Techniques et Matériels</h2>
+    <p>SGPP possède un entrepôt logistique, des bureaux équipés informatiquement et un parc de matériel technique professionnel complet :</p>
+    <ul>
+      <li><strong>Appareils de mesure :</strong> Lasers de précision, outils de traçage (mètres, niveaux, équerres).</li>
+      <li><strong>Matériel de levage et d'accès :</strong> Lève-plaques, équipements de manutention, échafaudages, escabeaux.</li>
+      <li><strong>Outillage électroportatif :</strong> Scies circulaires professionnelles, visseuses et perceuses haute performance, perforateurs, meuleuses, scies sauteuses, scies égoïnes, rabots électriques.</li>
+      <li><strong>Outillage spécialisé :</strong> Cisailles à tôle, pinces à sertir, coupe-rails et montants pour les ossatures métalliques.</li>
+      <li><strong>Finitions et joints :</strong> Couteaux, spatules, platoirs, taloches, truelles, matériel de traitement des joints, d'application d'enduits, de ponçage et de finition.</li>
+      <li><strong>Informatique du conducteur de travaux :</strong> Véhicule de service dédié, poste informatique complet, photocopieur A3/A4, scanner, imprimante multifonction, ligne téléphonique et accès internet haut débit.</li>
+    </ul>
+  </div>
+
+  <div class="doc-section">
+    <h2><span class="icon">📋</span> Références de l'Entreprise</h2>
+    <p>Sélection d'opérations techniques majeures exécutées dans le domaine de la plâtrerie et de l'aménagement intérieur :</p>
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Titre</th>
+          <th>Nature des Travaux</th>
+          <th>Maître d'Ouvrage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2022</td>
+          <td>Les Jardins de Sévigné</td>
+          <td>Réalisation d'un ensemble de logements à Valence</td>
+          <td>SCCV Jardins de Sévigné, Espace Don Quichotte, 547 Quai de Gaulle, 34201 Sète</td>
+        </tr>
+        <tr>
+          <td>2022–2023</td>
+          <td>Ostara</td>
+          <td>Construction d'un immeuble de 30 logements, Rue Forest d'Entrais, Gap</td>
+          <td>Bouygues Immobilier, Les Terrasses de l'Europe, 05000 Gap</td>
+        </tr>
+        <tr>
+          <td>2022–2023</td>
+          <td>Hacienda</td>
+          <td>Extension et aménagement d'un bâtiment</td>
+          <td>Envoludia, 261 Rue de Paris, 93100 Montreuil</td>
+        </tr>
+        <tr>
+          <td>2022–2023</td>
+          <td>Collège Laragne</td>
+          <td>Restructuration du collège des Hautes-Plaine, Laragne (05)</td>
+          <td>Département Hautes-Alpes</td>
+        </tr>
+        <tr>
+          <td>2022–2023</td>
+          <td>LNA</td>
+          <td>Rénovation et extension de l'Institut Médicalisé de Mar Vivo à La Seyne-sur-Mer</td>
+          <td>MF La Seyne – LNA Santé, 7 Bd Auguste Ste Priou, 44240 Vertou</td>
+        </tr>
+        <tr>
+          <td>2023</td>
+          <td>Caeli</td>
+          <td>Construction de 24 logements collectifs, 05220 Monêtier-les-Bains</td>
+          <td>Bouygues Immobilier, Les Terrasses de l'Europe, 05000 Gap</td>
+        </tr>
+        <tr>
+          <td>2023–2024</td>
+          <td>L'Amandier</td>
+          <td>Construction d'une RSS</td>
+          <td>Aegide, 42 Avenue Raymond Poincaré, 75116 Paris</td>
+        </tr>
+        <tr>
+          <td>2023</td>
+          <td>CH Digne-les-Bains</td>
+          <td>Réorganisation des services d'hospitalisation complète de psychiatrie générale</td>
+          <td>Centre Hospitalier de Digne-les-Bains, Quartier Saint Christophe, 04000 Digne-les-Bains</td>
+        </tr>
+        <tr>
+          <td>2023</td>
+          <td>Le Mont d'Or</td>
+          <td>Construction de 32 logements à Manosque</td>
+          <td>SCCV Le Mont d'Or</td>
+        </tr>
+        <tr>
+          <td>2023–2024</td>
+          <td>Le Solea</td>
+          <td>Construction de 15 logements, 05560 Vars</td>
+          <td>SAS Vars Le Solea, 322 Avenue du Prado, 13008 Marseille</td>
+        </tr>
+        <tr>
+          <td>2024</td>
+          <td>Le Viaduc</td>
+          <td>Construction de 10 logements</td>
+          <td>SCCV Chemin Le Viaduc, 265 Avenue de Mazargues, 13008 Marseille</td>
+        </tr>
+        <tr>
+          <td>2024–2025</td>
+          <td>RSS – Via Domitia</td>
+          <td>Construction d'une résidence Seniors, Gap</td>
+          <td>SCCV Gap – Via Domitia</td>
+        </tr>
+        <tr>
+          <td>2025</td>
+          <td>Patio 8</td>
+          <td>Construction de 50 logements collectifs</td>
+          <td>Bouygues Immobilier, 19A Avenue Jean Jaurès, 05000 Gap</td>
+        </tr>
+        <tr>
+          <td>2025</td>
+          <td>Les Cimes</td>
+          <td>Construction d'un immeuble d'habitation de 71 logements</td>
+          <td>SNC IPR1, 69 Bis Avenue du Prado, 13006 Marseille</td>
+        </tr>
+        <tr>
+          <td>2025</td>
+          <td>Volx</td>
+          <td>Logement cave coopérative</td>
+          <td>SCCV Cœur Village, 350 Rue Jean-René GGL Parc du Golf – Bâtiment 20, 13290 Aix-en-Provence</td>
+        </tr>
+        <tr>
+          <td>2025</td>
+          <td>Chaffaut</td>
+          <td>Construction de 26 logements collectifs et de 8 logements individuels</td>
+          <td>Unicil, 11 Rue Armeny, 13006 Marseille</td>
+        </tr>
+        <tr>
+          <td>2025–2026</td>
+          <td>Livingstone</td>
+          <td>Construction d'une résidence de tourisme</td>
+          <td>SCCV Au Passage du Rocher, 3 Rue de Sarrelouis, 67000 Strasbourg</td>
+        </tr>
+        <tr>
+          <td>2025–2026</td>
+          <td>Hélistation</td>
+          <td>Requalification et extension de l'hélistation</td>
+          <td>CHICAS Gap, Place Auguste Muret, 05000 Gap</td>
+        </tr>
+        <tr>
+          <td>2026</td>
+          <td>Palais des Sports</td>
+          <td>Réhabilitation du palais des sports</td>
+          <td>Commune d'Orcières le Village – Hôtel de Ville, 05170 Orcières</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<footer>
+  <p>Intervention : Gap • Briançon • Embrun • Sisteron • Manosque • Digne-les-Bains</p>
+  <p>N° Siret SGPP : 939 415 824 000 19 &nbsp;|&nbsp; <strong>QUALIBAT N° 4132 (Technicité confirmée)</strong></p>
+  <p>N° Siret Maddalon peinture : 829 357 870 000 23</p>
+  <a href="mention-legal.html">Mentions légales et Politique de confidentialité</a><br>
+  <a href="Cvg.html">Conditions Générales de Vente</a>
+  <p style="margin-top:10px;">© 2026 SGPP & Maddalon Peinture – Tous droits réservés</p>
+</footer>
+
+<script>
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+if(navToggle && navMenu){
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('#navMenu a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('active');
+      navMenu.classList.remove('open');
+    });
+  });
+}
+</script>
+</body>
+</html>
