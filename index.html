@@ -69,6 +69,9 @@
   --shadow-card: 0 4px 24px rgba(0,0,0,0.08);
   --shadow-strong: 0 12px 40px rgba(0,0,0,0.18);
   --transition: 0.28s ease;
+  --org-blue: #2f5fae;
+  --org-blue-dark: #1d3f7a;
+  --org-blue-light: #eaf2fc;
 }
 
 *, *::before, *::after {
@@ -964,6 +967,52 @@ section {
 /* ===== EQUIPE ORGANIGRAMME ===== */
 .a-propos {
   background: var(--gray-100);
+  position: relative;
+  overflow: hidden;
+}
+
+.a-propos .section-header,
+.a-propos .organigramme-container {
+  position: relative;
+  z-index: 2;
+}
+
+.a-propos::before {
+  content: "";
+  position: absolute;
+  top: 18px; left: 18px;
+  width: 110px; height: 84px;
+  background-image: radial-gradient(var(--org-blue) 2px, transparent 2px);
+  background-size: 15px 15px;
+  opacity: .16;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.a-propos::after {
+  content: "";
+  position: absolute;
+  top: 30px; right: -60px;
+  width: 260px; height: 190px;
+  background: linear-gradient(135deg, rgba(47,95,174,0.12), rgba(245,166,35,0.16));
+  border-radius: 42% 58% 55% 45% / 50% 40% 60% 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.equipe-highlight {
+  color: var(--org-blue);
+  position: relative;
+  display: inline-block;
+}
+
+.equipe-highlight::after {
+  content: "";
+  position: absolute;
+  left: 4px; right: 4px; bottom: -8px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
 }
 
 .organigramme-container {
@@ -984,48 +1033,225 @@ section {
 
 .entreprise-title {
   text-align: center;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 900;
   color: var(--text-dark);
-  margin-bottom: 36px;
+  margin-bottom: 40px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-.org-row {
+/* ---- layout: sidebar + tree ---- */
+.org-tree {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 24px;
+  gap: 48px;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 
-.org-card {
-  background: var(--gray-100);
-  padding: 18px 28px;
+.org-side {
+  flex: 0 0 228px;
+}
+
+.org-side-title {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  line-height: 1.4;
+  color: var(--text-dark);
+  margin-bottom: 18px;
+}
+
+.org-side-title em {
+  display: block;
+  font-style: normal;
+  color: var(--org-blue);
+}
+
+.org-side-title::after {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: var(--org-blue);
+  border-radius: 2px;
+  margin-top: 10px;
+}
+
+.org-side-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.org-connector-dot {
+  width: 2px;
+  height: 24px;
+  background: var(--gray-200);
+  margin: 0 0 0 91px;
+  position: relative;
+}
+
+.org-connector-dot::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: -3px;
+  transform: translateY(-50%);
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--org-blue);
+}
+
+.org-main {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---- node card ---- */
+.org-node {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
   border-radius: var(--radius-md);
-  text-align: center;
-  min-width: 200px;
-  border-top: 3px solid var(--dark-soft);
+  padding: 13px 20px;
+  box-shadow: 0 2px 10px rgba(17,24,39,0.05);
   transition: var(--transition);
 }
 
-.org-card:hover { box-shadow: var(--shadow-card); }
+.org-node:hover {
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
+}
 
-.org-card h4 { font-size: 16px; color: var(--text-dark); margin-bottom: 4px; font-weight: 700; }
-.org-card p { font-size: 13px; color: var(--gray-600); font-weight: 500; }
+.org-badge {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
 
-.org-card.leader {
-  border-top-color: var(--gold);
+.org-badge svg { width: 19px; height: 19px; }
+
+.org-avatar {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px var(--white), 0 0 0 4px var(--gray-200);
+}
+
+.org-avatar svg { width: 26px; height: 26px; }
+
+.org-avatar.male { background: #eaf1fb; }
+.org-avatar.male svg { color: #3d6c99; }
+.org-avatar.female { background: #fcebf1; }
+.org-avatar.female svg { color: #c2557d; }
+
+.org-node h4 { font-size: 14.5px; font-weight: 800; color: var(--text-dark); margin-bottom: 2px; white-space: nowrap; }
+.org-node p { font-size: 12px; font-weight: 700; }
+
+/* Assistantes administratives */
+.org-node.admin .org-badge { background: var(--org-blue-light); }
+.org-node.admin .org-badge svg { color: var(--org-blue); }
+.org-node.admin p { color: var(--org-blue); }
+
+/* Dirigeant */
+.org-node.leader {
   background: var(--dark);
+  border-color: var(--dark);
+  padding: 18px 30px;
+  min-width: 300px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(17,24,39,0.25);
 }
 
-.org-card.leader h4 { color: var(--gold); }
-.org-card.leader p { color: rgba(255,255,255,0.7); }
-
-.org-card.admin {
-  border-top-color: #6ea4c7;
+.org-node.leader::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: 16px; right: 16px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  border-radius: 3px;
 }
+
+.org-node.leader .org-badge { background: rgba(245,166,35,.18); }
+.org-node.leader .org-badge svg { color: var(--gold); }
+.org-node.leader h4 { color: var(--white); font-size: 17px; }
+.org-node.leader p { color: var(--gold); font-size: 12.5px; }
+.org-node.leader .org-avatar { box-shadow: 0 0 0 3px var(--dark), 0 0 0 4px rgba(255,255,255,.2); }
+
+/* Chef d'equipe / chef de chantier / conducteur */
+.org-node.chef .org-badge { background: rgba(245,166,35,.12); }
+.org-node.chef .org-badge svg { color: var(--gold-dark); }
+.org-node.chef p { color: var(--gold-dark); }
+
+/* ---- connectors ---- */
+.org-stem {
+  width: 2px;
+  height: 28px;
+  background: var(--gray-200);
+}
+
+.org-branch {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  position: relative;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.org-branch::before {
+  content: "";
+  position: absolute;
+  top: -28px; left: 50%;
+  width: 2px; height: 28px;
+  background: var(--gray-200);
+  transform: translateX(-1px);
+}
+
+.org-branch.multi::after {
+  content: "";
+  position: absolute;
+  top: -28px; left: 25%; right: 25%;
+  height: 2px;
+  background: var(--gray-200);
+}
+
+.org-branch > .org-node { position: relative; }
+
+.org-branch.multi > .org-node::before {
+  content: "";
+  position: absolute;
+  top: -28px; left: 50%;
+  width: 2px; height: 28px;
+  background: var(--gray-200);
+  transform: translateX(-1px);
+}
+
+/* ---- team title + grid ---- */
+.org-team-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 42px 0 22px;
+  padding-top: 30px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.org-team-title svg { width: 17px; height: 17px; color: var(--org-blue); }
 
 .sub-team-title {
   font-size: 14px;
@@ -1038,34 +1264,34 @@ section {
 
 .workers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
   gap: 12px;
 }
 
 .worker-tag {
-  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
   border: 1px solid var(--gray-200);
-  padding: 13px 16px;
+  padding: 11px 15px;
   border-radius: var(--radius-sm);
-  text-align: center;
-  font-weight: 600;
-  font-size: 13px;
-  color: var(--text-dark);
   transition: var(--transition);
+  box-shadow: 0 2px 8px rgba(17,24,39,0.03);
 }
 
 .worker-tag:hover {
-  border-color: rgba(245,166,35,0.3);
-  background: rgba(245,166,35,0.04);
+  border-color: rgba(47,95,174,.3);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
 }
 
-.worker-tag span {
-  display: block;
-  font-size: 11px;
-  color: var(--gray-600);
-  font-weight: 500;
-  margin-top: 3px;
-}
+.worker-tag .org-badge { width: 32px; height: 32px; background: var(--org-blue-light); }
+.worker-tag .org-badge svg { width: 15px; height: 15px; color: var(--org-blue); }
+.worker-tag .org-avatar { width: 42px; height: 42px; box-shadow: 0 0 0 2px var(--white), 0 0 0 3px var(--gray-200); }
+.worker-tag .org-avatar svg { width: 22px; height: 22px; }
+.worker-tag h4 { font-size: 13px; font-weight: 700; margin-bottom: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.worker-tag p { font-size: 11px; font-weight: 700; color: var(--org-blue); }
 
 /* ===== HISTOIRE ===== */
 .about-story {
@@ -1429,10 +1655,18 @@ footer .footer-links {
   /* ORGANIGRAMME */
   .entreprise-block { padding: 20px 16px; border-radius: var(--radius-lg); }
   .entreprise-title { font-size: 18px; margin-bottom: 24px; }
-  .org-row { flex-direction: column; align-items: center; gap: 10px; margin-bottom: 16px; }
-  .org-card { width: 100%; max-width: 300px; min-width: unset; padding: 14px 16px; }
+  .org-tree { flex-direction: column; gap: 28px; }
+  .org-side { flex: none; }
+  .org-connector-dot { margin-left: 24px; }
+  .org-node { width: 100%; max-width: 340px; padding: 12px 16px; }
+  .org-node.leader { min-width: unset; width: 100%; max-width: 340px; }
+  .org-branch { flex-direction: column; align-items: center; gap: 14px; }
+  .org-branch::after, .org-branch.multi::after { display: none; }
+  .org-branch.multi > .org-node::before { display: none; }
+  .org-team-title { margin-top: 32px; padding-top: 24px; }
   .workers-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .worker-tag { padding: 10px 8px; font-size: 12px; }
+  .worker-tag { padding: 10px 8px; }
+  .worker-tag h4 { font-size: 12px; }
 
   /* HISTOIRE */
   .about-story { padding: 60px 20px; }
@@ -1600,8 +1834,8 @@ footer .footer-links {
       <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
     </div>
     <div>
-      <div class="stat-num">4.9/5</div>
-      <div class="stat-label">Avis clients Google</div>
+      <div class="stat-num">48h</div>
+      <div class="stat-label"> maximum pour votre devis gratuit</div>
     </div>
   </div>
   <div class="stat-item">
@@ -1857,7 +2091,7 @@ footer .footer-links {
 <section class="a-propos" id="a-propos">
   <div class="section-header">
     <div class="section-eyebrow">L'équipe</div>
-    <h2 class="section-title">Notre Équipe</h2>
+    <h2 class="section-title">Notre <span class="equipe-highlight">Équipe</span></h2>
     <p class="section-sub">Des professionnels qualifiés à votre service.</p>
   </div>
 
@@ -1865,85 +2099,184 @@ footer .footer-links {
 
     <div class="entreprise-block">
       <h3 class="entreprise-title">Société Maddalon Peinture</h3>
-      <div class="org-row">
-        <div class="org-card leader">
-          <h4>Benjamin MADDALON</h4>
-          <p>Dirigeant</p>
+
+      <div class="org-tree">
+        <div class="org-side">
+          <div class="org-side-title">Assistantes<em>Administratives</em></div>
+          <div class="org-side-list">
+            <div class="org-node admin">
+              <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-3.18C15.4 2.84 14.3 2 13 2h-2c-1.3 0-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm5 15H7v-2h10zm0-4H7v-2h10zm0-4H7V9h10z"/></svg></div>
+              <div class="org-avatar female"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5.5" r="3"/><path d="M9 10h6l2.2 7h-2.7l.7 5h-6.4l.7-5H6.8z"/></svg></div>
+              <div><h4>Ariane RICHAUD</h4><p>Assistante administrative</p></div>
+            </div>
+            <div class="org-connector-dot"></div>
+            <div class="org-node admin">
+              <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-3.18C15.4 2.84 14.3 2 13 2h-2c-1.3 0-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm5 15H7v-2h10zm0-4H7v-2h10zm0-4H7V9h10z"/></svg></div>
+              <div class="org-avatar female"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5.5" r="3"/><path d="M9 10h6l2.2 7h-2.7l.7 5h-6.4l.7-5H6.8z"/></svg></div>
+              <div><h4>Lisa CHOPIN</h4><p>Assistante administrative</p></div>
+            </div>
+          </div>
         </div>
-        <div class="org-card admin">
-          <h4>Ariane RICHAUD</h4>
-          <p>Assistante administrative</p>
-        </div>
-        <div class="org-card admin">
-          <h4>Lisa CHOPIN</h4>
-          <p>Assistante administrative</p>
+
+        <div class="org-main">
+          <div class="org-node leader">
+            <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 8l4 3 5-6 5 6 4-3-2 10H5L3 8zm2 12h14v2H5v-2z"/></svg></div>
+            <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+            <div><h4>Benjamin MADDALON</h4><p>Dirigeant</p></div>
+          </div>
+
+          <div class="org-branch multi">
+            <div class="org-node chef">
+              <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a8 8 0 0 0-8 8v1H2v3h20v-3h-2v-1a8 8 0 0 0-8-8zm-1 1.07V7h2V4.07A6.97 6.97 0 0 1 18.93 11H5.07A6.97 6.97 0 0 1 11 4.07z"/></svg></div>
+              <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+              <div><h4>Maxime GUAY</h4><p>Chef d'équipe</p></div>
+            </div>
+            <div class="org-node chef">
+              <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a8 8 0 0 0-8 8v1H2v3h20v-3h-2v-1a8 8 0 0 0-8-8zm-1 1.07V7h2V4.07A6.97 6.97 0 0 1 18.93 11H5.07A6.97 6.97 0 0 1 11 4.07z"/></svg></div>
+              <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+              <div><h4>Abdeslam MEROINI</h4><p>Chef d'équipe</p></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="org-row">
-        <div class="org-card staff">
-          <h4>Maxime GUAY</h4>
-          <p>Chef d'équipe</p>
-        </div>
-        <div class="org-card staff">
-          <h4>Abdeslam MEROINI</h4>
-          <p>Chef d'équipe</p>
-        </div>
-      </div>
-      <h4 class="sub-team-title" style="text-align:center;margin-bottom:16px;">Équipe Opérationnelle</h4>
+
+      <h4 class="org-team-title"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg>Équipe Opérationnelle</h4>
       <div class="workers-grid">
-        <div class="worker-tag">Christian ATINGA <span>Peintre</span></div>
-        <div class="worker-tag">Jean-Robert ILLI <span>Peintre</span></div>
-        <div class="worker-tag">Souleymane KONATE <span>Peintre</span></div>
-        <div class="worker-tag">Franck CASU <span>Peintre</span></div>
-        <div class="worker-tag">Sekou FADIGA <span>Peintre</span></div>
-        <div class="worker-tag">Abid HUSSAIN <span>Peintre</span></div>
-        <div class="worker-tag">Ahmed BASHIR <span>Peintre</span></div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Christian ATINGA</h4><p>Peintre</p></div>
+        </div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Jean-Robert ILLI</h4><p>Peintre</p></div>
+        </div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Souleymane KONATE</h4><p>Peintre</p></div>
+        </div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Franck CASU</h4><p>Peintre</p></div>
+        </div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Sekou FADIGA</h4><p>Peintre</p></div>
+        </div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Abid HUSSAIN</h4><p>Peintre</p></div>
+        </div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Ahmed BASHIR</h4><p>Peintre</p></div>
+        </div>
       </div>
     </div>
 
     <div class="entreprise-block">
       <h3 class="entreprise-title">Société SGPP</h3>
-      <div class="org-row">
-        <div class="org-card leader">
-          <h4>Benjamin MADDALON</h4>
-          <p>Dirigeant</p>
+
+      <div class="org-tree">
+        <div class="org-side">
+          <div class="org-side-title">Assistantes<em>Administratives</em></div>
+          <div class="org-side-list">
+            <div class="org-node admin">
+              <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-3.18C15.4 2.84 14.3 2 13 2h-2c-1.3 0-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm5 15H7v-2h10zm0-4H7v-2h10zm0-4H7V9h10z"/></svg></div>
+              <div class="org-avatar female"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5.5" r="3"/><path d="M9 10h6l2.2 7h-2.7l.7 5h-6.4l.7-5H6.8z"/></svg></div>
+              <div><h4>Ariane RICHAUD</h4><p>Assistante administrative</p></div>
+            </div>
+            <div class="org-connector-dot"></div>
+            <div class="org-node admin">
+              <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-3.18C15.4 2.84 14.3 2 13 2h-2c-1.3 0-2.4.84-2.82 2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm5 15H7v-2h10zm0-4H7v-2h10zm0-4H7V9h10z"/></svg></div>
+              <div class="org-avatar female"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5.5" r="3"/><path d="M9 10h6l2.2 7h-2.7l.7 5h-6.4l.7-5H6.8z"/></svg></div>
+              <div><h4>Lisa CHOPIN</h4><p>Assistante administrative</p></div>
+            </div>
+          </div>
         </div>
-        <div class="org-card admin">
-          <h4>Ariane RICHAUD</h4>
-          <p>Assistante administrative</p>
-        </div>
-        <div class="org-card admin">
-          <h4>Lisa CHOPIN</h4>
-          <p>Assistante administrative</p>
+
+        <div class="org-main">
+          <div class="org-node leader">
+            <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 8l4 3 5-6 5 6 4-3-2 10H5L3 8zm2 12h14v2H5v-2z"/></svg></div>
+            <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+            <div><h4>Benjamin MADDALON</h4><p>Dirigeant</p></div>
+          </div>
+
+          <div class="org-stem"></div>
+          <div class="org-node chef">
+            <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a8 8 0 0 0-8 8v1H2v3h20v-3h-2v-1a8 8 0 0 0-8-8zm-1 1.07V7h2V4.07A6.97 6.97 0 0 1 18.93 11H5.07A6.97 6.97 0 0 1 11 4.07z"/></svg></div>
+            <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+            <div><h4>Joel RIBEIRO</h4><p>Conducteur de travaux</p></div>
+          </div>
+
+          <div class="org-branch multi">
+            <div class="org-node chef">
+              <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a8 8 0 0 0-8 8v1H2v3h20v-3h-2v-1a8 8 0 0 0-8-8zm-1 1.07V7h2V4.07A6.97 6.97 0 0 1 18.93 11H5.07A6.97 6.97 0 0 1 11 4.07z"/></svg></div>
+              <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+              <div><h4>Tarek MAALAOUI</h4><p>Chef de chantier</p></div>
+            </div>
+            <div class="org-node chef">
+              <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3a8 8 0 0 0-8 8v1H2v3h20v-3h-2v-1a8 8 0 0 0-8-8zm-1 1.07V7h2V4.07A6.97 6.97 0 0 1 18.93 11H5.07A6.97 6.97 0 0 1 11 4.07z"/></svg></div>
+              <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+              <div><h4>Diallo MAKAN</h4><p>Chef de chantier</p></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="org-row">
-        <div class="org-card staff driver">
-          <h4>Joel RIBEIRO</h4>
-          <p>Conducteur de travaux</p>
-        </div>
-      </div>
-      <div class="org-row">
-        <div class="org-card staff">
-          <h4>Tarek MAALAOUI</h4>
-          <p>Chef de chantier</p>
-        </div>
-        <div class="org-card staff">
-          <h4>Diallo MAKAN</h4>
-          <p>Chef de chantier</p>
-        </div>
-      </div>
-      <h4 class="sub-team-title" style="text-align:center;margin-bottom:16px;">Équipe Opérationnelle</h4>
+
+      <h4 class="org-team-title"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg>Équipe Opérationnelle</h4>
       <div class="workers-grid">
-        <div class="worker-tag">Sahbi MERCHEGUI <span>Plaquiste</span></div>
-        <div class="worker-tag">KONE Loceni <span>Plaquiste</span></div>
-        <div class="worker-tag">Cristian POBUBNII <span>Plaquiste</span></div>
-        <div class="worker-tag">Murat KAYA <span>Plaquiste</span></div>
-        <div class="worker-tag">Lamjed SLITI <span>Plaquiste</span></div>
-        <div class="worker-tag">Valeriu CHIMIJUC <span>Plaquiste</span></div>
-        <div class="worker-tag">Rachid DEHBY <span>Plaquiste</span></div>
-        <div class="worker-tag">Jaser AMRI <span>Plaquiste / Jointeur</span></div>
-        <div class="worker-tag">Mustafa DURMUS <span>Plaquiste</span></div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Sahbi MERCHEGUI</h4><p>Plaquiste</p></div>
+        </div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>KONE Loceni</h4><p>Plaquiste</p></div>
+        </div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Cristian POBUBNII</h4><p>Plaquiste</p></div>
+        </div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Murat KAYA</h4><p>Plaquiste</p></div>
+        </div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Lamjed SLITI</h4><p>Plaquiste</p></div>
+        </div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Valeriu CHIMIJUC</h4><p>Plaquiste</p></div>
+        </div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Rachid DEHBY</h4><p>Plaquiste</p></div>
+        </div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Jaser AMRI</h4><p>Plaquiste / Jointeur</p></div>
+        </div>
+        <div class="worker-tag">
+          <div class="org-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H6a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2v2H6a2 2 0 0 0-2 2v9h2v-8.5a.5.5 0 0 1 .5-.5H10v9h2v-9h2v-2H8V8h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM7 8V4h12v4z"/></svg></div>
+          <div class="org-avatar male"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="3.2"/><path d="M16.5 21v-5.2h1.3l-1.9-6.3a2 2 0 0 0-1.9-1.5h-3.9a2 2 0 0 0-1.9 1.5l-1.9 6.3h1.3V21h2v-4.5h.9V21h2v-4.5h.9V21z"/></svg></div>
+          <div><h4>Mustafa DURMUS</h4><p>Plaquiste</p></div>
+        </div>
       </div>
     </div>
 
